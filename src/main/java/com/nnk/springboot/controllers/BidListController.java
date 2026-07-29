@@ -3,6 +3,7 @@ package com.nnk.springboot.controllers;
 
 
 import com.nnk.springboot.dtos.BidListRequestDto;
+import com.nnk.springboot.dtos.BidListResponseDto;
 import com.nnk.springboot.mappers.BidListMapper;
 import com.nnk.springboot.services.BidListService;
 import org.springframework.ui.Model;
@@ -37,7 +38,7 @@ public class BidListController {
     }
 
     @PostMapping("/bidList/validate")
-    public String validate(@Valid @ModelAttribute("bidList") BidListRequestDto bidList,
+    public String validate(@Valid @ModelAttribute("bidList") BidListResponseDto bidList,
                            BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "bidList/add";

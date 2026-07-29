@@ -15,7 +15,7 @@ public class CurvePoint {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
-    private Integer id;
+    private Long id;
 
     @NotNull(message = "CurveId is mandatory")
     @Column(name = "CurveId")
@@ -41,7 +41,7 @@ public class CurvePoint {
     public CurvePoint() {
     }
 
-    public CurvePoint(Integer id, Integer curveId, Timestamp asOfDate, Double term, Double value, Timestamp creationDate) {
+    public CurvePoint(Long id, Integer curveId, Timestamp asOfDate, Double term, Double value, Timestamp creationDate) {
         this.id = id;
         this.curveId = curveId;
         this.asOfDate = asOfDate;
@@ -53,11 +53,11 @@ public class CurvePoint {
     // Getters and Setters
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"/>
+	<title>Bid List</title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<h2>Bid List</h2>
+		<a class="btn btn-primary btn-sm" href="/bidList/add">Add Bid</a>
+	</div>
+
+	<table class="table table-striped">
+		<thead>
+		<tr>
+			<th>Account</th>
+			<th>Type</th>
+			<th>Bid Quantity</th>
+			<th>Actions</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="bid : ${bidLists}">
+			<td th:text="${bid.account()}"></td>
+			<td th:text="${bid.type()}"></td>
+			<td th:text="${bid.bidQuantity()}"></td>
+			<td>
+				<a th:href="@{/bidList/update/{id}(id=${bid.bidListId()})}" class="btn btn-warning btn-sm">Update</a>
+				<a th:href="@{/bidList/delete/{id}(id=${bid.bidListId()})}" class="btn btn-danger btn-sm">Delete</a>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>
