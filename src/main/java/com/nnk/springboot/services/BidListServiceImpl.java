@@ -35,9 +35,8 @@ public class BidListServiceImpl implements BidListService {
     }
 
     @Override
-    public BidListResponseDto createBidList(BidListRequestDto bidListRequestDto) {
-        BidList bidList = new BidList();
-        bidListMapper.updateFromDto(bidListRequestDto, bidList);
+    public BidListResponseDto createBidList(BidListResponseDto bidListResponseDto) {
+        BidList bidList = bidListMapper.toEntity(bidListResponseDto);
         BidList savedBidList = bidListRepository.save(bidList);
         return bidListMapper.toResponseDto(savedBidList);
     }
