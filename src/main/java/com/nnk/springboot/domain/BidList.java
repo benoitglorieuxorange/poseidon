@@ -10,84 +10,138 @@ import jakarta.validation.constraints.NotBlank;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+/**
+ * JPA entity representing a Bid List.
+ * 
+ * Maps to the BIDLIST database table and represents a bid entry in the system
+ * containing account, trading type, quantities, prices and other metadata.
+ */
 @Entity
 @Table(name = "bidlist")
 public class BidList {
-    // TODO: Map columns in data table BIDLIST with corresponding java fields
+    /** Unique identifier for the bid list entry */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BidListId")
     private Long bidListId;
 
+    /** Account associated with the bid */
     @NotBlank(message = "Account is mandatory")
     @Column(name = "account", nullable = false, length = 30)
     private String account;
 
+    /** Type of bid transaction */
     @NotBlank(message = "Type is mandatory")
     @Column(name = "type", nullable = false, length = 30)
     private String type;
 
+    /** Quantity of bid */
     @Column(name = "bidQuantity")
     private Double bidQuantity;
 
+    /** Quantity asked */
     @Column(name = "askQuantity")
     private Double askQuantity;
 
+    /** Bid price */
     @Column(name = "bid")
     private Double bid;
 
+    /** Ask price */
     @Column(name = "ask")
     private Double ask;
 
+    /** Benchmark reference */
     @Column(name = "benchmark", length = 125)
     private String benchmark;
 
+    /** Date of the bid list entry */
     @Column(name = "bidListDate")
     private Timestamp bidListDate;
 
+    /** Commentary on the bid */
     @Column(name = "commentary", length = 125)
     private String commentary;
 
+    /** Security type */
     @Column(name = "security", length = 125)
     private String security;
 
+    /** Status of the bid */
     @Column(name = "status", length = 10)
     private String status;
 
+    /** Trader name */
     @Column(name = "trader", length = 125)
     private String trader;
 
+    /** Book reference */
     @Column(name = "book", length = 125)
     private String book;
 
+    /** Name of the creator */
     @Column(name = "creationName", length = 125)
     private String creationName;
 
+    /** Date of creation */
     @Column(name = "creationDate")
     private Timestamp creationDate;
 
+    /** Name of the last reviewer */
     @Column(name = "revisionName", length = 125)
     private String revisionName;
 
+    /** Date of last revision */
     @Column(name = "revisionDate")
     private Timestamp revisionDate;
 
+    /** Deal name */
     @Column(name = "dealName", length = 125)
     private String dealName;
 
+    /** Deal type */
     @Column(name = "dealType", length = 125)
     private String dealType;
 
+    /** Source list identifier */
     @Column(name = "sourceListId", length = 125)
     private String sourceListId;
 
+    /** Trade side (buy/sell) */
     @Column(name = "side", length = 125)
     private String side;
 
-    // constructors
-
+    /**
+     * Default constructor.
+     */
     public BidList(){   }
 
+    /**
+     * All-args constructor for BidList.
+     *
+     * @param bidListId the unique identifier
+     * @param account the account
+     * @param type the bid type
+     * @param bidQuantity the bid quantity
+     * @param askQuantity the ask quantity
+     * @param bid the bid price
+     * @param ask the ask price
+     * @param benchmark the benchmark reference
+     * @param bidListDate the bid list date
+     * @param commentary the commentary
+     * @param security the security type
+     * @param status the bid status
+     * @param trader the trader name
+     * @param book the book reference
+     * @param creationName the creation user name
+     * @param creationDate the creation date
+     * @param revisionName the revision user name
+     * @param revisionDate the revision date
+     * @param dealName the deal name
+     * @param dealType the deal type
+     * @param sourceListId the source list id
+     * @param side the trade side
+     */
     public BidList(Long bidListId, String account, String type, Double bidQuantity, Double askQuantity, Double bid, Double ask, String benchmark, Timestamp bidListDate, String commentary, String security, String status, String trader, String book, String creationName, Timestamp creationDate, String revisionName, Timestamp revisionDate, String dealName, String dealType, String sourceListId, String side) {
         this.bidListId = bidListId;
         this.account = account;
