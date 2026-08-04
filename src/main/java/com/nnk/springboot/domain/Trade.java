@@ -5,83 +5,135 @@ import jakarta.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 
 
+/**
+ * JPA entity representing a Trade.
+ * 
+ * Maps to the trade database table and represents a trade transaction
+ * containing buy/sell quantities, prices, and associated metadata.
+ */
 @Entity
 @Table(name = "trade")
 public class Trade {
-    // TODO: Map columns in data table TRADE with corresponding java fields
 
+    /** Unique identifier for the trade */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TradeId")
     private Integer tradeId;
 
+    /** Account associated with the trade */
     @NotBlank(message = "Account is mandatory")
     @Column(name = "account", nullable = false, length = 30)
     private String account;
 
+    /** Type of trade transaction */
     @NotBlank(message = "Type is mandatory")
     @Column(name = "type", nullable = false, length = 30)
     private String type;
 
+    /** Quantity to buy */
     @Column(name = "buyQuantity")
     private Double buyQuantity;
 
+    /** Quantity to sell */
     @Column(name = "sellQuantity")
     private Double sellQuantity;
 
+    /** Buy price */
     @Column(name = "buyPrice")
     private Double buyPrice;
 
+    /** Sell price */
     @Column(name = "sellPrice")
     private Double sellPrice;
 
+    /** Date of the trade */
     @Column(name = "tradeDate")
     private Timestamp tradeDate;
 
+    /** Security type */
     @Column(name = "security", length = 125)
     private String security;
 
+    /** Status of the trade */
     @Column(name = "status", length = 10)
     private String status;
 
+    /** Trader name */
     @Column(name = "trader", length = 125)
     private String trader;
 
+    /** Benchmark reference */
     @Column(name = "benchmark", length = 125)
     private String benchmark;
 
+    /** Book reference */
     @Column(name = "book", length = 125)
     private String book;
 
+    /** Name of the creator */
     @Column(name = "creationName", length = 125)
     private String creationName;
 
+    /** Date of creation */
     @Column(name = "creationDate")
     private Timestamp creationDate;
 
+    /** Name of the last reviewer */
     @Column(name = "revisionName", length = 125)
     private String revisionName;
 
+    /** Date of last revision */
     @Column(name = "revisionDate")
     private Timestamp revisionDate;
 
+    /** Deal name */
     @Column(name = "dealName", length = 125)
     private String dealName;
 
+    /** Deal type */
     @Column(name = "dealType", length = 125)
     private String dealType;
 
+    /** Source list identifier */
     @Column(name = "sourceListId", length = 125)
     private String sourceListId;
 
+    /** Trade side (buy/sell) */
     @Column(name = "side", length = 125)
     private String side;
 
 
-    // Contructors
-
+    /**
+     * Default constructor.
+     */
     public Trade(){}
 
+    /**
+     * All-args constructor for Trade.
+     *
+     * @param tradeId the unique identifier
+     * @param account the account
+     * @param type the trade type
+     * @param buyQuantity the buy quantity
+     * @param sellQuantity the sell quantity
+     * @param buyPrice the buy price
+     * @param sellPrice the sell price
+     * @param tradeDate the trade date
+     * @param security the security type
+     * @param status the trade status
+     * @param trader the trader name
+     * @param benchmark the benchmark reference
+     * @param book the book reference
+     * @param creationName the creation user name
+     * @param creationDate the creation date
+     * @param revisionName the revision user name
+     * @param revisionDate the revision date
+     * @param dealName the deal name
+     * @param dealType the deal type
+     * @param sourceListId the source list id
+     * @param side the trade side
+     */
     public Trade(Integer tradeId, String account, String type, Double buyQuantity, Double sellQuantity, Double buyPrice, Double sellPrice, Timestamp tradeDate, String security, String status, String trader, String benchmark, String book, String creationName, Timestamp creationDate, String revisionName, Timestamp revisionDate, String dealName, String dealType, String sourceListId, String side) {
         this.tradeId = tradeId;
         this.account = account;
