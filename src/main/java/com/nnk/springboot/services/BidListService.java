@@ -5,7 +5,14 @@ import com.nnk.springboot.dtos.BidListResponseDto;
 
 import java.util.List;
 
+/**
+ * Service interface for BidList operations.
+ * 
+ * Defines business logic operations for managing bid lists including
+ * creation, retrieval, update, and deletion.
+ */
 public interface BidListService {
+
 
     List<BidListResponseDto> findAllBidList();
     BidListResponseDto findByIdBidList(Long id);

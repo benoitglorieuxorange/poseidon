@@ -1,29 +1,41 @@
 package com.nnk.springboot.domain;
-
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+/**
+ * JPA entity representing a User in the system.
+ * 
+ * Maps to the users database table and contains user authentication and profile information.
+ */
 @Entity
 @Table(name = "users")
 public class User {
+    /** Unique identifier for the user */
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id;
+    private Long id;
+
+    /** Username for login */
     @NotBlank(message = "Username is mandatory")
     private String username;
+
+    /** Encrypted password for the user */
     @NotBlank(message = "Password is mandatory")
     private String password;
+
+    /** Full name of the user */
     @NotBlank(message = "FullName is mandatory")
     private String fullname;
+
+    /** Role assigned to the user (e.g., ADMIN, USER) */
     @NotBlank(message = "Role is mandatory")
     private String role;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
