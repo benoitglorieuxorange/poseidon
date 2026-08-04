@@ -40,7 +40,7 @@ public class CurvePoint {
 
     /** Value at this point on the yield curve */
     @NotNull(message = "Value is mandatory")
-    @Column(name = "value")
+    @Column(name = "`value`")
     private Double value;
 
     /** Date of creation */
