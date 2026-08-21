@@ -5,6 +5,7 @@ import com.nnk.springboot.dtos.BidListRequestDto;
 import com.nnk.springboot.dtos.BidListResponseDto;
 import com.nnk.springboot.mappers.BidListMapper;
 import com.nnk.springboot.repositories.BidListRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -70,6 +71,7 @@ public class BidListServiceImpl implements BidListService {
      */
 
     @Override
+    @Transactional
     public BidListResponseDto createBidList(BidListResponseDto bidListResponseDto) {
         BidList bidList = bidListMapper.toEntity(bidListResponseDto);
         BidList savedBidList = bidListRepository.save(bidList);
@@ -86,6 +88,7 @@ public class BidListServiceImpl implements BidListService {
      */
 
     @Override
+    @Transactional
     public BidListResponseDto updateBidList(Long id, BidListRequestDto bidListRequestDto) {
         BidList bidList = bidListRepository.findById(id).orElseThrow(() -> new RuntimeException("BidList not found with id: " + id));
         bidListMapper.updateFromDto(bidListRequestDto, bidList);

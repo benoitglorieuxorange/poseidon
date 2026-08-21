@@ -151,7 +151,7 @@ class UserServiceTest {
         user.setId(id);
         user.setUsername(username);
         user.setPassword(password);
-        user.setFullname(fullname);
+        user.setFullName(fullname);
         user.setRole(role);
         return user;
     }

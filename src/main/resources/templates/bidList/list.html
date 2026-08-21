@@ -18,7 +18,7 @@
 		</div>
 		<div class="col-6 text-right">
 
-			<form th:action="@{/app-logout}" method="POST">
+			<form th:action="@{/logout}" method="POST">
 				<input type="submit" value="Logout"/>
 			</form>
 		</div>
@@ -26,9 +26,7 @@
 	<div class="row"><h2>Bid List</h2></div>
 	<div class="row">
 		<a class="btn btn-primary btn-sm" href="/bidList/add">Add Bid</a>
-
-
-	<table class="table table-striped">
+		<table class="table table-striped">
 		<thead>
 		<tr>
 			<th>Account</th>

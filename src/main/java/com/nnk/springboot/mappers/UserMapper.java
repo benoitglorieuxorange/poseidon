@@ -15,7 +15,7 @@ public class UserMapper {
         return new UserResponseDto(
                 user.getId(),
                 user.getUsername(),
-                user.getFullname(),
+                user.getFullName(),
                 user.getRole()
         );
     }
@@ -34,7 +34,7 @@ public class UserMapper {
             return;
         }
         user.setUsername(dto.username());
-        user.setFullname(dto.fullname());
+        user.setFullName(dto.fullname());
         user.setRole(dto.role());
     }
 

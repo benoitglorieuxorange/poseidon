@@ -5,6 +5,7 @@ import com.nnk.springboot.dtos.RatingRequestDto;
 import com.nnk.springboot.dtos.RatingResponseDto;
 import com.nnk.springboot.mappers.RatingMapper;
 import com.nnk.springboot.repositories.RatingRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -62,6 +63,7 @@ public class RatingServiceImpl implements RatingService{
      */
 
     @Override
+    @Transactional
     public RatingResponseDto createRating(RatingRequestDto ratingRequestDto) {
         Rating rating = ratingMapper.toEntity(ratingRequestDto);
         Rating savedRating = ratingRepository.save(rating);
@@ -78,6 +80,7 @@ public class RatingServiceImpl implements RatingService{
      */
 
     @Override
+    @Transactional
     public RatingResponseDto updateRating(Long id, RatingRequestDto ratingRequestDto) {
         Rating rating = ratingRepository.findById(id).orElseThrow(() -> new RuntimeException("Rating not found with id: " + id));
         ratingMapper.updateFromDto(ratingRequestDto, rating);

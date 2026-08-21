@@ -5,6 +5,7 @@ import com.nnk.springboot.dtos.RuleNameRequestDto;
 import com.nnk.springboot.dtos.RuleNameResponseDto;
 import com.nnk.springboot.mappers.RuleNameMapper;
 import com.nnk.springboot.repositories.RuleNameRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -59,6 +60,7 @@ public class RuleNameServiceImpl implements RuleNameService {
      * @return the created RuleNameResponseDto
      */
     @Override
+    @Transactional
     public RuleNameResponseDto createRuleName(RuleNameRequestDto ruleNameRequestDto) {
         RuleName ruleName = ruleNameMapper.toEntity(ruleNameRequestDto);
         RuleName savedRuleName = ruleNameRepository.save(ruleName);
@@ -74,6 +76,7 @@ public class RuleNameServiceImpl implements RuleNameService {
      * @throws RuntimeException if no rule name is found with the given ID
      */
     @Override
+    @Transactional
     public RuleNameResponseDto updateRuleName(Long id, RuleNameRequestDto ruleNameRequestDto) {
         RuleName ruleName = ruleNameRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("RuleName not found with id: " + id));

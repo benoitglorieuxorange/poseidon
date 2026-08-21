@@ -5,6 +5,7 @@ import com.nnk.springboot.dtos.CurvePointRequestDto;
 import com.nnk.springboot.dtos.CurvePointResponseDto;
 import com.nnk.springboot.mappers.CurvePointMapper;
 import com.nnk.springboot.repositories.CurvePointRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -65,6 +66,7 @@ public class CurvePointServiceImpl implements CurvePointService {
      * @return the created curve point
      */
     @Override
+    @Transactional
     public CurvePointResponseDto createCurvePoint(CurvePointRequestDto curvePointRequestDto) {
         CurvePoint curvePoint = new CurvePoint();
         curvePointMapper.updateFromDto(curvePointRequestDto, curvePoint);
@@ -81,6 +83,7 @@ public class CurvePointServiceImpl implements CurvePointService {
      * @throws RuntimeException if the curve point is not found
      */
     @Override
+    @Transactional
     public CurvePointResponseDto updateCurvePoint(Long id, CurvePointRequestDto curvePointRequestDto) {
         CurvePoint curvePoint = curvePointRepository.findById(id).orElseThrow(() -> new RuntimeException("CurvePoint not found with id: " + id));
         curvePointMapper.updateFromDto(curvePointRequestDto, curvePoint);

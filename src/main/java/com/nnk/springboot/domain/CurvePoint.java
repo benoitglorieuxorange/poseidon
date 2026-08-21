@@ -3,6 +3,7 @@ package com.nnk.springboot.domain;
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.sql.Timestamp;
@@ -35,11 +36,13 @@ public class CurvePoint {
 
     /** Term of the yield curve point */
     @NotNull(message = "Term is mandatory")
+    @Digits(integer = 8, fraction = 2, message = "Term must be a valid number with up to 2 decimal places")
     @Column(name = "term")
     private Double term;
 
     /** Value at this point on the yield curve */
     @NotNull(message = "Value is mandatory")
+    @Digits(integer = 8, fraction = 2, message = "Value must be a valid number with up to 2 decimal places")
     @Column(name = "`value`")
     private Double value;
 
