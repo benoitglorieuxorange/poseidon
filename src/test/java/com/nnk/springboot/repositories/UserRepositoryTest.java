@@ -18,7 +18,7 @@ class UserRepositoryTest {
         User user = new User();
         user.setUsername("tester");
         user.setPassword("encoded-password");
-        user.setFullname("Test User");
+        user.setFullName("Test User");
         user.setRole("ADMIN");
 
         User saved = userRepository.save(user);
@@ -26,7 +26,7 @@ class UserRepositoryTest {
         assertThat(saved.getId()).isNotNull();
         assertThat(userRepository.findById(saved.getId())).isPresent();
         assertThat(userRepository.findByUsername("tester")).isPresent();
-        assertThat(userRepository.findByUsername("tester").get().getFullname()).isEqualTo("Test User");
+        assertThat(userRepository.findByUsername("tester").get().getFullName()).isEqualTo("Test User");
 
         userRepository.deleteById(saved.getId());
 

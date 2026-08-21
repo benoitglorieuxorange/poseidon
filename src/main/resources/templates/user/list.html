@@ -35,8 +35,10 @@
 					<td th:text="${user.username}"></td>
 					<td style="width: 25%" th:text="${user.role}"></td>
 					<td style="width: 15%" class="text-center">
-						<a th:href="@{/user/update/{id}(id=${user.id})}">Edit</a>&nbsp;|&nbsp;
-						<a th:href="@{/user/delete/{id}(id=${user.id})}">Delete</a>
+						<a th:href="@{/user/update/{id}(id=${user.id})}" class="btn btn-warning btn-sm">Update</a>
+						<a th:href="@{/user/delete/{id}(id=${user.id})}" class="btn btn-danger btn-sm">Delete</a>
+<!--						<a th:href="@{/user/update/{id}(id=${user.id})}">Edit</a>&nbsp;|&nbsp;-->
+<!--						<a th:href="@{/user/delete/{id}(id=${user.id})}">Delete</a>-->
 					</td>
 				</tr>
 			</tbody>

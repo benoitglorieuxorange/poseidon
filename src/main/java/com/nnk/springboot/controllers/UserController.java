@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
+    private static final int MIN_PASSWORD_LENGTH = 8;
 
     private final UserService userService;
     private final UserMapper userMapper;
@@ -46,6 +47,8 @@ public class UserController {
                            BindingResult result, Model model) {
         if (user.password() == null || user.password().isBlank()) {
             result.rejectValue("password", "error.user", "Password is mandatory");
+        } else if (user.password().length() < MIN_PASSWORD_LENGTH) {
+            result.rejectValue("password", "error.user", "Password must be at least 8 characters long");
         }
         if (result.hasErrors()) {
             return "user/add";
@@ -65,6 +68,9 @@ public class UserController {
     @PostMapping("/user/update/{id}")
     public String updateUser(@PathVariable("id") Long id, @Valid @ModelAttribute("user") UserRequestDto user,
                              BindingResult result, Model model) {
+        if (user.password() != null && !user.password().isBlank() && user.password().length() < MIN_PASSWORD_LENGTH) {
+            result.rejectValue("password", "error.user", "Password must be at least 8 characters long");
+        }
         if (result.hasErrors()) {
             model.addAttribute("userId", id);
             return "user/update";

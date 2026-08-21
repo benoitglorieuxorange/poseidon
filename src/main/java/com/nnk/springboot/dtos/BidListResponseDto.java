@@ -1,5 +1,8 @@
 package com.nnk.springboot.dtos;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 /**
  * DTO for BidList response.
  * 
@@ -12,7 +15,9 @@ package com.nnk.springboot.dtos;
  */
 public record BidListResponseDto(
         Long bidListId,
+        @NotBlank @Size(max = 30)
         String account,
+        @NotBlank @Size(max = 30)
         String type,
         Double bidQuantity
 ) {}
