@@ -2,12 +2,14 @@ package com.nnk.springboot.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import org.springframework.beans.factory.annotation.*;
+
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
-import java.sql.Date;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+
 import java.sql.Timestamp;
 
 /**
@@ -36,19 +38,23 @@ public class BidList {
     private String type;
 
     /** Quantity of bid */
+    @Digits(integer = 8, fraction = 2, message = "Bid quantity must be a valid number with up to 2 decimal places")
     @Column(name = "bidQuantity")
     private Double bidQuantity;
 
     /** Quantity asked */
+    @Digits(integer = 8, fraction = 2, message = "Ask quantity must be a valid number with up to 2 decimal places")
     @Column(name = "askQuantity")
     private Double askQuantity;
 
     /** Bid price */
+    @Digits(integer = 8, fraction = 2, message = "Bid must be a valid number with up to 2 decimal places")
     @Column(name = "bid")
     private Double bid;
 
     /** Ask price */
     @Column(name = "ask")
+    @Digits(integer = 8, fraction = 2, message = "Ask must be a valid number with up to 2 decimal places")
     private Double ask;
 
     /** Benchmark reference */
@@ -198,7 +204,7 @@ public class BidList {
         return bidQuantity;
     }
 
-    public void setBidQuantity(Double bidQuantity) {
+    public void setBidQuantity(@NotNull @PositiveOrZero Double bidQuantity) {
         this.bidQuantity = bidQuantity;
     }
 
@@ -206,7 +212,7 @@ public class BidList {
         return askQuantity;
     }
 
-    public void setAskQuantity(Double askQuantity) {
+    public void setAskQuantity(@NotNull @PositiveOrZero Double askQuantity) {
         this.askQuantity = askQuantity;
     }
 

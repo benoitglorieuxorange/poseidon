@@ -5,6 +5,7 @@ import com.nnk.springboot.dtos.TradeRequestDto;
 import com.nnk.springboot.dtos.TradeResponseDto;
 import com.nnk.springboot.mappers.TradeMapper;
 import com.nnk.springboot.repositories.TradeRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class TradeServiceImpl implements TradeService {
     }
 
     @Override
+    @Transactional
     public TradeResponseDto createTrade(TradeRequestDto tradeRequestDto) {
         Trade trade = tradeMapper.toEntity(tradeRequestDto);
         Trade savedTrade = tradeRepository.save(trade);
@@ -43,6 +45,7 @@ public class TradeServiceImpl implements TradeService {
     }
 
     @Override
+    @Transactional
     public TradeResponseDto updateTrade(Integer id, TradeRequestDto tradeRequestDto) {
         Trade trade = tradeRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Trade not found with id: " + id));

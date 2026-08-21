@@ -1,6 +1,7 @@
 package com.nnk.springboot.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 
@@ -32,18 +33,22 @@ public class Trade {
     private String type;
 
     /** Quantity to buy */
+    @Digits(integer = 8, fraction = 2, message = "Buy quantity must be a valid number with up to 2 decimal places")
     @Column(name = "buyQuantity")
     private Double buyQuantity;
 
     /** Quantity to sell */
+    @Digits(integer = 8, fraction = 2, message = "Sell quantity must be a valid number with up to 2 decimal places")
     @Column(name = "sellQuantity")
     private Double sellQuantity;
 
     /** Buy price */
+    @Digits(integer = 8, fraction = 2, message = "Buy price must be a valid number with up to 2 decimal places")
     @Column(name = "buyPrice")
     private Double buyPrice;
 
     /** Sell price */
+    @Digits(integer = 8, fraction = 2, message = "Sell price must be a valid number with up to 2 decimal places")
     @Column(name = "sellPrice")
     private Double sellPrice;
 

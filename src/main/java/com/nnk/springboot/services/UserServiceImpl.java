@@ -5,6 +5,7 @@ import com.nnk.springboot.dtos.UserRequestDto;
 import com.nnk.springboot.dtos.UserResponseDto;
 import com.nnk.springboot.mappers.UserMapper;
 import com.nnk.springboot.repositories.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +40,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserResponseDto createUser(UserRequestDto userRequestDto) {
         User user = userMapper.toEntity(userRequestDto);
         user.setPassword(passwordEncoder.encode(userRequestDto.password()));
@@ -47,6 +49,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserResponseDto updateUser(Long id, UserRequestDto userRequestDto) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
